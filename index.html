@@ -10,8 +10,12 @@
 </head>
 
 <body>
-    <header>The Odin Project Assignment</header>
-    <div class="notice">NOTICE: If you are in a mobile device and the buttons are distorted thene please use DESKTOP MODE or ZOOM OUT TO 90% OR 80%</div>
+    <div class="notice">NOTICE: If you are in a mobile device and the buttons are distorted then please use DESKTOP MODE or ZOOM OUT TO 90% OR 80%</div>
+    <div class="keyboard">
+        <h3>KEYBOARD KEY MAP:</h3>
+        <div>"CLR" : Escape / Delete</div>
+        <div>"- / +" : Shift</div>
+    </div>
     <div class="container">
         <h1>SIMPLE calculator</h1>
         <div class="screen">
@@ -19,25 +23,25 @@
             <div class="primary"></div>
         </div>
         <div class="buttons">
-            <button class="decimalPoint">.</button>
-            <button class="digit">0</button>
-            <button class="equalsTo">=</button>
-            <button class="operator">+</button>
-            <button class="digit">1</button>
-            <button class="digit">2</button>
-            <button class="digit">3</button>
-            <button class="operator">-</button>
-            <button class="digit">4</button>
-            <button class="digit">5</button>
-            <button class="digit">6</button>
-            <button class="operator">x</button>
-            <button class="digit">7</button>
-            <button class="digit">8</button>
-            <button class="digit">9</button>
-            <button class="operator">/</button>
-            <button class="clear">CLR</button>
-            <button class="negative">-/+</button>
-            <button class="backspace">
+            <button class="decimalPoint" data-key=".">.</button>
+            <button class="digit" data-key="0">0</button>
+            <button class="equalsTo" data-key="Enter,=">=</button>
+            <button class="operator" data-key="+">+</button>
+            <button class="digit" data-key="1">1</button>
+            <button class="digit" data-key="2">2</button>
+            <button class="digit" data-key="3">3</button>
+            <button class="operator" data-key="-">-</button>
+            <button class="digit" data-key="4">4</button>
+            <button class="digit" data-key="5">5</button>
+            <button class="digit" data-key="6">6</button>
+            <button class="operator" data-key="*">x</button>
+            <button class="digit" data-key="7">7</button>
+            <button class="digit" data-key="8">8</button>
+            <button class="digit" data-key="9">9</button>
+            <button class="operator" data-key="/">/</button>
+            <button class="clear" data-key="Escape, Delete">CLR</button>
+            <button class="negative" data-key="Shift">-/+</button>
+            <button class="backspace" data-key="Backspace">
                 <div>BACKSPACE</div>
                 <div>&#8678;</div>
             </button>

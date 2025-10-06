@@ -101,3 +101,7 @@ header, footer {
 .clear:hover {
     background-color: lightcoral;
 }
+
+h3{
+    margin: 0;
+}

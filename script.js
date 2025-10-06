@@ -123,14 +123,14 @@ function clrScr() {
 let isDotPresent = false;
 const dot = document.querySelector(".decimalPoint");
 dot.addEventListener("click", () => {
-    if(!isDotPresent) {
-        if(operator === null) {
-            if(num1 !== "") num1 = num1 + ".";
+    if (!isDotPresent) {
+        if (operator === null) {
+            if (num1 !== "") num1 = num1 + ".";
             else num1 = "0.";
             primaryScreen.textContent = num1;
             isDotPresent = true;
         } else {
-            if(num2 !== "") num2 = num2 + ".";
+            if (num2 !== "") num2 = num2 + ".";
             else num2 = "0.";
             primaryScreen.textContent = num2;
             isDotPresent = true;
@@ -141,10 +141,10 @@ dot.addEventListener("click", () => {
 
 const backspace = document.querySelector(".backspace");
 backspace.addEventListener("click", () => {
-    if(operator === null && num1 !== "" && result === "") {
+    if (operator === null && num1 !== "" && result === "") {
         const shortNum = num1.slice(0, -1);
         const lastDigit = num1.slice(-1);
-        if(lastDigit === ".") isDotPresent = false;
+        if (lastDigit === ".") isDotPresent = false;
         num1 = shortNum;
         primaryScreen.textContent = num1;
 
@@ -152,7 +152,7 @@ backspace.addEventListener("click", () => {
     else if (operator !== null && num2 !== "") {
         const shortNum = num2.slice(0, -1);
         const lastDigit = num2.slice(-1);
-        if(lastDigit === ".") isDotPresent = false;
+        if (lastDigit === ".") isDotPresent = false;
         num2 = shortNum;
         primaryScreen.textContent = num2;
     }
@@ -160,14 +160,21 @@ backspace.addEventListener("click", () => {
 
 const negate = document.querySelector(".negative");
 negate.addEventListener("click", () => {
-    if(operator === null && num1 !== "" && result === "") {
-        num1 = num1*(-1);
+    if (operator === null && num1 !== "" && result === "") {
+        num1 = num1 * (-1);
         primaryScreen.textContent = num1;
     }
-    else if(operator != null && num2 != "") {
-        num2 = num2*(-1);
+    else if (operator != null && num2 != "") {
+        num2 = num2 * (-1);
         primaryScreen.textContent = num2;
     }
 });
 
+
+document.addEventListener("keydown", (event) => {
+  document.querySelectorAll("button").forEach(btn => {
+    const keys = btn.dataset.key?.split(",");
+    if (keys?.includes(event.key)) btn.click();
+  });
+});
 
