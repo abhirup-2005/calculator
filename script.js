@@ -1,24 +1,31 @@
-const add = (a, b) => a + b;
-const subtract = (a, b) => a - b;
-const multiply = (a, b) => a * b;
-const divide = (a, b) => a / b;
+const add = (a, b) => String(a + b);
+const subtract = (a, b) => String(a - b);
+const multiply = (a, b) => String(a * b);
+const divide = (a, b) => {
+    if (b === 0) return "ERROR";
+    return String(a / b);
+};
 
-let num1 = 0, operator, num2 = 0;
+let num1 = "", operator = null, num2 = "";
 
 function operate(operator) {
     let answer;
     switch (operator) {
         case "+":
-            answer = add(num1, num2);
+            answer = add(Number(num1), Number(num2));
             break;
         case "-":
-            answer = subtract(num1, num2);
+            answer = subtract(Number(num1), Number(num2));
+            break;
+        case "x":
+            answer = multiply(Number(num1), Number(num2));
             break;
         case "*":
-            answer = multiply(num1, num2);
+            answer = multiply(Number(num1), Number(num2));
             break;
         case "/":
-            answer = divide(num1, num2);
+            answer = divide(Number(num1), Number(num2));
+            break;
         default:
             break;
     }
@@ -32,24 +39,80 @@ let isScreenBlank = primaryScreen.textContent === "" ? true : false;
 const digitBtns = document.querySelectorAll(".digit");
 digitBtns.forEach(btn => {
     btn.addEventListener("click", () => {
+        if (result !== "") {
+            clrScr();
+        }
         if (isScreenBlank) {
-            num1 = num1*10 + Number(btn.textContent);
+            num1 = num1 + btn.textContent;
             primaryScreen.textContent = `${num1}`;
-            console.log(num1);
         }
         else {
-            num2 = num2*10 + Number(btn.textContent);
+            num2 = num2 + btn.textContent;
             primaryScreen.textContent = `${num2}`;
-            
+
         }
     });
 });
 
-const operators = document.querySelectorAll(".operator");
-operators.forEach(btn => {
+const operatorBtns = document.querySelectorAll(".operator");
+operatorBtns.forEach(btn => {
     btn.addEventListener("click", () => {
-        operator = btn.textContent
-        isScreenBlank = false;
-        secondaryScreen.textContent = `${num1} ${operator}`;
+        if (num1 !== "") {
+            if (isScreenBlank) {
+                operator = btn.textContent;
+                secondaryScreen.textContent = `${num1} ${operator}`;
+                isScreenBlank = false;
+            }
+            else {
+                let answer = operate(operator);
+                if (answer === "ERROR") {
+                    clrScr();
+                    primaryScreen.textContent = "ERROR";
+                }
+                else {
+                    answer = Math.round(answer * 100000) / 100000;
+                    operator = btn.textContent;
+                    secondaryScreen.textContent = `${answer} ${operator}`;
+                    num1 = answer;
+                    num2 = "";
+                }
+            }
+            result = "";
+        }
     })
-})
+});
+
+let result = "";
+const equalBtn = document.querySelector(".equalsTo");
+equalBtn.addEventListener("click", () => {
+    if (operator != null && num2 != "") {
+        result = operate(operator);
+        if (result === "ERROR") {
+            clrScr();
+            primaryScreen.textContent = "ERROR";
+        }
+        else {
+            result = Math.round(result * 100000) / 100000;
+            secondaryScreen.textContent = `${num1} ${operator} ${num2} =`;
+            primaryScreen.textContent = `${result}`;
+            num1 = result;
+            num2 = "";
+            isScreenBlank = true;
+            operator = null;
+        }
+    }
+});
+
+const clearScreen = document.querySelector(".clear");
+clearScreen.addEventListener("click", () => {
+    clrScr();
+});
+
+function clrScr() {
+    primaryScreen.textContent = "";
+    secondaryScreen.textContent = "";
+    num1 = num2 = "";
+    operator = null;
+    isScreenBlank = true;
+    result = "";
+}
