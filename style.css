@@ -60,9 +60,9 @@ h1{
 }
 
 button {
-    width:80px;
+    width: 80px;
     height: 80px;
-    margin: 5px;
+    margin: 5px 10px;
     font-size: 25px;
     border-radius: 10px;
     border: 3px solid;
@@ -79,7 +79,25 @@ header, footer {
 }
 
 .notice {
-    max-width: 400px;
     text-align: center;
     color: red;
+}
+
+.backspace {
+    flex: 1;
+    min-width: 80px;
+    background-color: gray;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.backspace:hover {
+    background-color: darkgray;
+}
+
+.clear {
+    background-color: red;
+}
+.clear:hover {
+    background-color: lightcoral;
 }
