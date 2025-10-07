@@ -161,11 +161,11 @@ backspace.addEventListener("click", () => {
 const negate = document.querySelector(".negative");
 negate.addEventListener("click", () => {
     if (operator === null && num1 !== "" && result === "") {
-        num1 = num1 * (-1);
+        num1 = String(num1 * (-1));
         primaryScreen.textContent = num1;
     }
     else if (operator != null && num2 != "") {
-        num2 = num2 * (-1);
+        num2 = String(num2 * (-1));
         primaryScreen.textContent = num2;
     }
 });
